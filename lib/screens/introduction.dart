@@ -1,6 +1,9 @@
+import 'package:FindMySchool/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:page_transition/page_transition.dart';
+
+import '../colors.dart';
 
 class Introduction extends StatelessWidget {
   List<PageViewModel> getPages() {
@@ -10,7 +13,6 @@ class Introduction extends StatelessWidget {
           title: "Find the best Schools",
           body:
               "Enable Yourself to find the best possible school in all over Lahore",
-          footer: Text("@Find My School App"),
           decoration: const PageDecoration(
             titleTextStyle: TextStyle(
                 fontFamily: 'ss', fontWeight: FontWeight.bold, fontSize: 25),
@@ -21,12 +23,6 @@ class Introduction extends StatelessWidget {
           title: "Find the best Schools",
           body:
               "Enable Yourself to find the best possible school in all over Lahore",
-          footer: Text(
-            "@Find My School App",
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
           decoration: const PageDecoration(
             titleTextStyle: TextStyle(
                 fontFamily: 'ss', fontWeight: FontWeight.bold, fontSize: 25),
@@ -37,7 +33,6 @@ class Introduction extends StatelessWidget {
           title: "Find the best Schools",
           body:
               "Enable Yourself to find the best possible school in all over Lahore",
-          footer: Text("@Find My School App"),
           decoration: const PageDecoration(
             titleTextStyle: TextStyle(
                 fontFamily: 'ss', fontWeight: FontWeight.bold, fontSize: 25),
@@ -52,27 +47,37 @@ class Introduction extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 50.0),
         child: IntroductionScreen(
-          done: Text(
-            "Get Started",
-            style: TextStyle(fontFamily: 'ss', fontSize: 15),
-          ),
-          onDone: () {
-            // Within the `FirstRoute` widget
+            done: Text(
+              "Get Started",
+              style: TextStyle(fontFamily: 'ss', fontSize: 15),
+            ),
+            onDone: () {
+              // Within the `FirstRoute` widget
 
-            Navigator.pushReplacement(
-                context,
-                PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 500),
-                    child: Introduction()));
-          },
-          pages: getPages(),
-          showSkipButton: true,
-          skip: Text(
-            "Skip",
-            style: TextStyle(fontFamily: 'ss', fontSize: 15),
-          ),
-        ),
+              Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 500),
+                      child: WelcomeScreen()));
+            },
+            pages: getPages(),
+            showSkipButton: true,
+            skip: Text(
+              "Skip",
+              style: TextStyle(fontFamily: 'ss', fontSize: 15),
+            ),
+            showNextButton: true,
+            next: const Text("Next"),
+            dotsDecorator: DotsDecorator(
+              size: const Size.square(10.0),
+              activeSize: const Size(20.0, 10.0),
+              activeColor: primaryColor,
+              color: Colors.black26,
+              spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0)),
+            )),
       ),
     );
   }

@@ -1,5 +1,8 @@
 import 'package:FindMySchool/screens/splash.dart';
+import 'package:FindMySchool/screens/welcome.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/splash.dart';
 //import 'colors.dart';
 
 void main() {
