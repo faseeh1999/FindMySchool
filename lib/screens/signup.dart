@@ -2,24 +2,24 @@ import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColorDark,
-        title: Text('Login Screen', style: AppBarTextStyle,),
+        elevation: 8.0,
+        title: Text("Sign Up", style: AppBarTextStyle, ),
         centerTitle: true,
-
+        backgroundColor: primaryColorDark,
       ),
       body: Center(
         child: Container(
-          child: Text("In Login Screen", style: NormalTextStyle,),
+          child: Text("In Signup Screen", style: NormalTextStyle)
         ),
       ),
     );
