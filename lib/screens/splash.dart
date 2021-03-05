@@ -18,7 +18,7 @@ class Splash extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Image.asset(
-          'assets/images/splash2.png',
+          'assets/images/splash.png',
           fit: BoxFit.cover,
         ),
       ),
