@@ -49,7 +49,7 @@ class Introduction extends StatelessWidget {
         child: IntroductionScreen(
             done: Text(
               "Get Started",
-              style: TextStyle(fontFamily: 'ss', fontSize: 15),
+              style: TextStyle(fontFamily: 'ss', fontSize: 18, fontWeight: FontWeight.bold),
             ),
             onDone: () {
               // Within the `FirstRoute` widget
@@ -65,10 +65,10 @@ class Introduction extends StatelessWidget {
             showSkipButton: true,
             skip: Text(
               "Skip",
-              style: TextStyle(fontFamily: 'ss', fontSize: 15),
+              style: TextStyle(fontFamily: 'ss', fontSize: 18, fontWeight: FontWeight.bold),
             ),
             showNextButton: true,
-            next: const Text("Next"),
+            next: const Text("Next", style: TextStyle(fontFamily: 'ss', fontSize: 18, fontWeight: FontWeight.bold),),
             dotsDecorator: DotsDecorator(
               size: const Size.square(10.0),
               activeSize: const Size(20.0, 10.0),
