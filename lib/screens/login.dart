@@ -12,14 +12,31 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColorDark,
-        title: Text('Login Screen', style: AppBarTextStyle,),
-        centerTitle: true,
-
+        leading: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
       ),
       body: Center(
-        child: Container(
-          child: Text("In Login Screen", style: NormalTextStyle,),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "Login",
+              style: TextStyle(fontFamily: 'ss', fontSize: 20),
+            ),
+            SizedBox(
+              height: 70.0,
+            ),
+            Icon(
+              Icons.lock,
+              color: Colors.blue[300],
+              size: 50.0,
+            ),
+          ],
         ),
       ),
     );
