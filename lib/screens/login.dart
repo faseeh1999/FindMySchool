@@ -12,10 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
       ),
@@ -29,12 +26,27 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(fontFamily: 'ss', fontSize: 20),
             ),
             SizedBox(
-              height: 70.0,
+              height: 40.0,
             ),
-            Icon(
-              Icons.lock,
-              color: Colors.blue[300],
-              size: 50.0,
+            Container(
+              padding: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey[200].withOpacity(0.8),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.lock,
+                color: Colors.blue[300],
+                size: 50.0,
+              ),
             ),
           ],
         ),
