@@ -7,6 +7,8 @@ import 'package:page_transition/page_transition.dart';
 class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+        double width= MediaQuery.of(context).size.width;
     Future.delayed(Duration(milliseconds: 2800), () {
       Navigator.pushReplacement(
           context,
@@ -17,8 +19,7 @@ class Splash extends StatelessWidget {
     });
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+
         child: Stack(
 
           fit: StackFit.expand,

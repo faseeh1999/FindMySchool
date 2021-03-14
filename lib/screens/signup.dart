@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               child: Icon(
                 Icons.person_rounded,
-                color: Colors.blue[300],
+                color: iconColor,
                 size: 50.0,
               ),
             ),
