@@ -9,10 +9,12 @@ import '../theme/colors.dart';
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+
 
         // decoration: BoxDecoration(
         //   image: DecorationImage(
@@ -37,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
             Column(
               children: [
                 SizedBox(
-                  height: 80.0,
+                  height: height* 0.1,
                 ),
                 Text(
                   "Welcome To",
@@ -48,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: Colors.white),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: height * 0.03,
                 ),
                 Text(
                   "Find My School",
@@ -59,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: Colors.white),
                 ),
                 SizedBox(
-                  height: 380.0,
+                  height: height* 0.58,
                 ),
                 RaisedButton(
                   onPressed: () {
@@ -87,7 +89,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: height* 0.04,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -108,64 +110,9 @@ class WelcomeScreen extends StatelessWidget {
           ],
         ),
 
-        //fit: StackFit.loose,
 
-        //
-        // SizedBox(height: 10.0),
-
-        // SizedBox(height: 10.0),
-        // RaisedButton(onPressed: (){
-        //   Navigator.push(
-        //       context,
-        //       PageTransition(
-        //           type: PageTransitionType.fade,
-        //           duration: Duration(milliseconds: 500),
-        //           child: SignUpScreen()));
-        // }
-        //
-        //   , child: Text("Create a New Account", style: ButtonTextStyle,),
-        //   elevation: 2.0,
-        //   highlightElevation: 8.0,
-        //   color: buttonColor,
-        //   textColor: Colors.white,
-        //   splashColor: Colors.blue[200],
-        //   hoverElevation: 8.0,
-        //   hoverColor: Colors.green,
-        //   padding: EdgeInsets.only(left: 25.0,right: 25.0),
-        //
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(18.0),
-        //
-        //     //side: BorderSide(color: Colors.red)
-        //   ),
-        // ),
-        //
-        // GestureDetector(
-        //
-        //   onTap: (){
-        //     Navigator.push(
-        //         context,
-        //         PageTransition(
-        //             type: PageTransitionType.fade,
-        //             duration: Duration(milliseconds: 500),
-        //             child: LoginScreen()));
-        //
-        //
-        //
-        //   },
-        //   child: Text(
-        //     "Already Have an Account?",
-        //     style: LinkTextStyle,
-        //
-        //   ),
-        // )
-        //Image.asset('assets/images/welcome.png', fit: BoxFit.cover,),
       ),
-      //   Image.asset(
-      //   //   'assets/images/welcome.png',
-      //   //   fit: BoxFit.cover,
-      //   // ),
-      // ),
+
     );
   }
 }

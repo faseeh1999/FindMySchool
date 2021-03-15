@@ -49,7 +49,7 @@ class Introduction extends StatelessWidget {
         child: IntroductionScreen(
             done: Text(
               "Get Started",
-              style: TextStyle(fontFamily: 'ss', fontSize: 18),
+              style: TextStyle(fontFamily: 'ss', fontSize: 16),
             ),
             onDone: () {
               // Within the `FirstRoute` widget
