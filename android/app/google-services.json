@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "968334332726",
+    "project_id": "findmyschool1999",
+    "storage_bucket": "findmyschool1999.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968334332726:android:08b5b218624251325f5997",
+        "android_client_info": {
+          "package_name": "com.example.FindMySchool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968334332726-p12dk8qbgfnt8v7hgd4thgia14c2gcrs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.FindMySchool",
+            "certificate_hash": "79423ac67232c0494d3be9c2e00bd6812fc6287e"
+          }
+        },
+        {
+          "client_id": "968334332726-6rjndkaa5e9d9absqaodg8m0a51oea0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcz_mmaeHBgOQOlkqeuguF9hbHhPTClnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968334332726-6rjndkaa5e9d9absqaodg8m0a51oea0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
