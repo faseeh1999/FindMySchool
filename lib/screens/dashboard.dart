@@ -8,26 +8,32 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 
 class Dashboard extends StatefulWidget {
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
+
   int _currentIndex = 0;
   PageController _pageController;
 
   List listOfColors = [
     Container(
       color: Colors.red,
+
     ),
     Container(
       color: Colors.blueAccent,
+
     ),
     Container(
       color: Colors.amber,
+
     ),
     Container(
       color: Colors.green,
+
     ),
     Container(
       color: Colors.brown,
@@ -35,11 +41,14 @@ class _DashboardState extends State<Dashboard> {
         child: FlatButton(
           child: Text("Logout"),
           textColor: Colors.white,
-          onPressed: () {},
         ),
       ),
+
+
     ),
   ];
+
+
 
   @override
   void initState() {
@@ -53,43 +62,48 @@ class _DashboardState extends State<Dashboard> {
     super.dispose();
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.logout,
-                color: Colors.black,
-              ),
-              onPressed: () async {
-                try {
-                  await FirebaseAuth.instance.signOut();
-                } catch (e) {
-                  print(e);
-                }
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                    (route) => false);
-              },
-            )
-          ],
-          leading: Icon(
-            Icons.menu_sharp,
-            color: Colors.black,
-          ),
-          elevation: 0.0,
-          title: Text(
-            "Home",
-            style: appBarTitle,
-          ),
-          centerTitle: true,
-        ),
-        bottomNavigationBar: buildBottomNavyBar(),
-        body: listOfColors[_currentIndex]);
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.logout,
+              color: Colors.black,
+            ),
+            onPressed: () async {
+              try {
+                await FirebaseAuth.instance.signOut();
+              } catch (e) {
+                print(e);
+              }
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false);
+            },
+          )
+        ],
+
+        leading: Icon(Icons.menu_sharp, color: Colors.black,),
+
+        elevation: 0.0,
+
+        title: Text("Home", style: appBarTitle,),
+        centerTitle: true,
+
+      ),
+       bottomNavigationBar: buildBottomNavyBar(),
+
+       body: listOfColors[_currentIndex]
+      );
+
   }
 
   BottomNavyBar buildBottomNavyBar() {
@@ -101,60 +115,47 @@ class _DashboardState extends State<Dashboard> {
         // _pageController.animateToPage(index,
         //     duration: Duration(milliseconds: 300), curve: Curves.ease);
       }),
-      curve: Curves.easeIn,
+       curve: Curves.easeIn,
 
-      items: <BottomNavyBarItem>[
-        BottomNavyBarItem(
-          textAlign: TextAlign.justify,
-          icon: Icon(Icons.search),
-          title: Text(
-            "Search",
-            style: TextStyle(fontFamily: 'ss'),
-          ),
-          activeColor: Colors.red,
-          inactiveColor: Colors.grey,
-        ),
-        BottomNavyBarItem(
-          textAlign: TextAlign.justify,
-          icon: Icon(Icons.star_border_outlined),
-          title: Text(
-            "Bookmarks",
-            style: TextStyle(fontFamily: 'ss'),
-          ),
-          activeColor: Colors.blueAccent,
-          inactiveColor: Colors.grey,
-        ),
-        BottomNavyBarItem(
-          textAlign: TextAlign.justify,
-          icon: Icon(Icons.home_sharp),
-          title: Text(
-            "Home",
-            style: TextStyle(fontFamily: 'ss'),
-          ),
-          activeColor: Colors.amber,
-          inactiveColor: Colors.grey,
-        ),
-        BottomNavyBarItem(
-          textAlign: TextAlign.justify,
-          icon: Icon(Icons.notifications_active),
-          title: Text(
-            "Notifications",
-            style: TextStyle(fontFamily: 'ss'),
-          ),
-          activeColor: Colors.green,
-          inactiveColor: Colors.grey,
-        ),
-        BottomNavyBarItem(
-          textAlign: TextAlign.justify,
-          icon: Icon(Icons.settings),
-          title: Text(
-            "Settings",
-            style: TextStyle(fontFamily: 'ss'),
-          ),
-          activeColor: Colors.brown,
-          inactiveColor: Colors.grey,
-        ),
-      ],
-    );
+
+       items: <BottomNavyBarItem>[
+         BottomNavyBarItem(
+           textAlign: TextAlign.justify,
+             icon: Icon(Icons.search),
+             title: Text("Search", style: TextStyle(fontFamily: 'ss'),),
+           activeColor: Colors.red,
+           inactiveColor: Colors.grey,
+
+         ),
+         BottomNavyBarItem(
+            textAlign: TextAlign.justify,
+             icon: Icon(Icons.star_border_outlined),
+             title: Text("Bookmarks", style: TextStyle(fontFamily: 'ss'),),
+           activeColor: Colors.blueAccent,
+           inactiveColor: Colors.grey,
+         ),
+         BottomNavyBarItem(
+           textAlign: TextAlign.justify,
+           icon: Icon(Icons.home_sharp),
+           title: Text("Home", style: TextStyle(fontFamily: 'ss'),),
+           activeColor: Colors.amber,
+           inactiveColor: Colors.grey,
+         ),
+         BottomNavyBarItem(
+           textAlign: TextAlign.justify,
+           icon: Icon(Icons.notifications_active),
+           title: Text("Notifications", style: TextStyle(fontFamily: 'ss'),),
+           activeColor: Colors.green,
+           inactiveColor: Colors.grey,
+         ),
+         BottomNavyBarItem(
+           textAlign: TextAlign.justify,
+           icon: Icon(Icons.settings),
+           title: Text("Settings", style: TextStyle(fontFamily: 'ss'),),
+           activeColor: Colors.brown,
+           inactiveColor: Colors.grey,
+         ),
+       ],
+     );
   }
 }
