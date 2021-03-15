@@ -11,19 +11,15 @@ import 'package:page_transition/page_transition.dart';
 
 import 'dashboard.dart';
 
-
-
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
-
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _form = GlobalKey<FormState>();
 
-  final FirebaseAuth _auth =  FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   bool isLoading = false;
 
@@ -31,17 +27,20 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _pass = TextEditingController();
 
   bool _validate() {
-
     return _form.currentState.validate();
   }
 
-  final validatePassword = ValidationBuilder().required().minLength(6).maxLength(20).build();
-  final validateEmail = ValidationBuilder().required("This Field is Required").email().maxLength(50).build();
-
+  final validatePassword =
+      ValidationBuilder().required().minLength(6).maxLength(20).build();
+  final validateEmail = ValidationBuilder()
+      .required("This Field is Required")
+      .email()
+      .maxLength(50)
+      .build();
 
   void logIn() async {
     setState(() {
-      isLoading= true;
+      isLoading = true;
     });
     try {
       await FirebaseFirestore.instance
@@ -54,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
             UserCredential user = await _auth.signInWithEmailAndPassword(
                 email: _email.text, password: _pass.text);
             setState(() {
-              isLoading= false;
+              isLoading = false;
             });
 
             Navigator.pushAndRemoveUntil(
@@ -63,58 +62,110 @@ class _LoginScreenState extends State<LoginScreen> {
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 500),
                     child: Dashboard()),
-                    (route) => false);
+                (route) => false);
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
               setState(() {
-                isLoading= false;
+                isLoading = false;
               });
               print("User not found");
             } else if (e.code == 'wrong-password') {
               setState(() {
-                isLoading= false;
+                isLoading = false;
               });
 
               print("Wrong Password");
 
+              Widget okButton = FlatButton(
+                child: Text("Try Again"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              );
+
+              // set up the AlertDialog
+              AlertDialog alert = AlertDialog(
+                title: Text("Wrong Password"),
+                content: Text("The Passowrd You Entered is Incorrect."),
+                actions: [
+                  okButton,
+                ],
+              );
+              // show the dialog
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return alert;
+                },
+              );
             }
           } catch (e) {
             setState(() {
-              isLoading= false;
+              isLoading = false;
             });
             print("Error: " + e);
           }
         } else {
           setState(() {
-            isLoading= false;
+            isLoading = false;
           });
           print("User Not Found");
+
+          Widget okButton = FlatButton(
+            child: Text("Try Again"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          );
+
+          // set up the AlertDialog
+          AlertDialog alert = AlertDialog(
+            title: Text("Invalid Email"),
+            content: Text("The Email You Entered is Incorrect."),
+            actions: [
+              okButton,
+            ],
+          );
+          // show the dialog
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
         }
       });
     } catch (e) {
       setState(() {
-        isLoading= false;
+        isLoading = false;
+
+        Widget okButton = FlatButton(
+          child: Text("Try Again"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        );
+
+        // set up the AlertDialog
+        AlertDialog alert = AlertDialog(
+          title: Text("Connection Error"),
+          content: Text("Kindly Check Your Connection & Try Again"),
+          actions: [
+            okButton,
+          ],
+        );
+        // show the dialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
       });
 
       print(e);
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontFamily: 'ss', fontSize: 20),
                 ),
                 SizedBox(
-                  height: size.height*0.04,
+                  height: size.height * 0.04,
                 ),
                 Container(
                   padding: EdgeInsets.all(20.0),
@@ -161,123 +212,110 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 // Login Form Starts from here.
-                Padding(padding: EdgeInsets.all(30.0),
-                child: Form(
-                  key: _form,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: _email,
-
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: validateEmail,
-                        decoration: InputDecoration(labelText: "Email", border: OutlineInputBorder()),
-                      ),
-                      SizedBox(height: size.height * 0.04),
-                      TextFormField(
-                        controller: _pass,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: validatePassword,
-                        obscureText: true,
-                        decoration: InputDecoration(labelText: "Password", border: OutlineInputBorder()),
-                      ),
-
-                      SizedBox(height: size.height * 0.04),
-                      RaisedButton.icon(
-
-                        elevation: 3.0,
-                        onPressed: (){
-
-                          if(_validate() == true){
-                                logIn();
-                          }
-
-
-
-
-
-
-                        },
-                        shape: RoundedRectangleBorder(
-
-                            borderRadius: BorderRadius.all(Radius.circular(18.0))),
-                        label: Text('Login Wth Email',
-                          style: ButtonTextStyle,),
-                        icon: Icon(Icons.email_outlined, color:Colors.white,),
-                        textColor: Colors.white,
-                        splashColor: Colors.blueAccent,
-                        color: buttonColor,
-                        padding: EdgeInsets.only(left: 35.0, right: 35.0),
-
-                      ),
-
-                      SizedBox(height: size.height * 0.01),
-
-                      Text("OR",style: TextStyle(fontFamily: 'ss', fontSize: 16.0),),
-
-                      SizedBox(height: size.height * 0.01),
-                      RaisedButton.icon(
-
-                        elevation: 3.0,
-                        onPressed: (){
-
-                          if(_validate() == true){
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 500),
-                                    child: SignUpScreen()));
-                          }else{
-                            _validate();
-                          }
-
-
-
-
-                        },
-                        shape: RoundedRectangleBorder(
-
-                            borderRadius: BorderRadius.all(Radius.circular(18.0))),
-                        label: Text('Login Wth Google',
-                          style: ButtonTextStyle,),
-                        icon: Image.asset('assets/icons/google.png'),
-                        textColor: Colors.white,
-                        splashColor: Colors.blueAccent,
-                        color: buttonColor,
-                      padding: EdgeInsets.only(left: 35.0, right: 35.0),
-
-                      ),
-                      SizedBox(height: size.height * 0.03),
-                      Divider(
-                        color: Colors.grey[800],
-                      ),
-                      SizedBox(height: size.height * 0.05),
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 500),
-                                    child: WelcomeScreen()));
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: Form(
+                    key: _form,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _email,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: validateEmail,
+                          decoration: InputDecoration(
+                              labelText: "Email", border: OutlineInputBorder()),
+                        ),
+                        SizedBox(height: size.height * 0.04),
+                        TextFormField(
+                          controller: _pass,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: validatePassword,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              labelText: "Password",
+                              border: OutlineInputBorder()),
+                        ),
+                        SizedBox(height: size.height * 0.04),
+                        RaisedButton.icon(
+                          elevation: 3.0,
+                          onPressed: () {
+                            if (_validate() == true) {
+                              logIn();
+                            }
                           },
-                          child: Text(
-                            "Forgot Your Password?",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'ss',
-                                decoration: TextDecoration.underline
-                            ),
-                          )
-                      ),
-
-
-
-                    ],
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(18.0))),
+                          label: Text(
+                            'Login Wth Email',
+                            style: ButtonTextStyle,
+                          ),
+                          icon: Icon(
+                            Icons.email_outlined,
+                            color: Colors.white,
+                          ),
+                          textColor: Colors.white,
+                          splashColor: Colors.blueAccent,
+                          color: buttonColor,
+                          padding: EdgeInsets.only(left: 35.0, right: 35.0),
+                        ),
+                        SizedBox(height: size.height * 0.01),
+                        Text(
+                          "OR",
+                          style: TextStyle(fontFamily: 'ss', fontSize: 16.0),
+                        ),
+                        SizedBox(height: size.height * 0.01),
+                        RaisedButton.icon(
+                          elevation: 3.0,
+                          onPressed: () {
+                            if (_validate() == true) {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 500),
+                                      child: SignUpScreen()));
+                            } else {
+                              _validate();
+                            }
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(18.0))),
+                          label: Text(
+                            'Login Wth Google',
+                            style: ButtonTextStyle,
+                          ),
+                          icon: Image.asset('assets/icons/google.png'),
+                          textColor: Colors.white,
+                          splashColor: Colors.blueAccent,
+                          color: buttonColor,
+                          padding: EdgeInsets.only(left: 35.0, right: 35.0),
+                        ),
+                        SizedBox(height: size.height * 0.03),
+                        Divider(
+                          color: Colors.grey[800],
+                        ),
+                        SizedBox(height: size.height * 0.05),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 500),
+                                      child: WelcomeScreen()));
+                            },
+                            child: Text(
+                              "Forgot Your Password?",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'ss',
+                                  decoration: TextDecoration.underline),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
-
                 )
               ],
             ),
