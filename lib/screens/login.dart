@@ -1,3 +1,5 @@
+
+
 import 'package:FindMySchool/screens/signup.dart';
 import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
@@ -10,6 +12,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'dashboard.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _form = GlobalKey<FormState>();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
   bool isLoading = false;
 
@@ -38,7 +43,9 @@ class _LoginScreenState extends State<LoginScreen> {
       .maxLength(50)
       .build();
 
-  void logIn() async {
+  // Login With Email COde
+
+  void logInEmail() async {
     setState(() {
       isLoading = true;
     });
@@ -167,6 +174,57 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+
+
+
+
+
+  void logInGoogle() async {
+    setState(() {
+      isLoading = true;
+
+
+
+    });
+
+
+    try{
+      await _googleSignIn.signIn();
+      setState(() {
+        isLoading = false;
+        Navigator.pushAndRemoveUntil(
+            context,
+            PageTransition(
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 500),
+                child: Dashboard()),
+                (route) => false);
+
+      });
+    }
+    catch (err){
+      setState(() {
+        isLoading = true;
+      });
+      print(err);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -240,7 +298,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           elevation: 3.0,
                           onPressed: () {
                             if (_validate() == true) {
-                              logIn();
+                              logInEmail();
                             }
                           },
                           shape: RoundedRectangleBorder(
@@ -268,16 +326,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         RaisedButton.icon(
                           elevation: 3.0,
                           onPressed: () {
-                            if (_validate() == true) {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 500),
-                                      child: SignUpScreen()));
-                            } else {
-                              _validate();
-                            }
+                            logInGoogle();
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius:
