@@ -1,5 +1,4 @@
 import 'package:FindMySchool/screens/login.dart';
-import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   Future SendresetPasswordEmail(String email) async{
 
+
+
     return _auth.sendPasswordResetEmail(email: email);
+
+
+
+
+
 
   }
 
@@ -130,7 +136,38 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                           if (_validate() == true) {
 
-                            SendresetPasswordEmail(_email);
+                            SendresetPasswordEmail(_email.text);
+
+                            Widget okButton = FlatButton(
+                              child: Text("OK"),
+                              onPressed: () {
+                               Navigator.pushAndRemoveUntil(context,
+
+                                   PageTransition(
+                                       type: PageTransitionType.fade,
+                                       duration: Duration(milliseconds: 500),
+                                       child: LoginScreen())
+
+
+                                   , (route) => false);
+                              },
+                            );
+
+                            // set up the AlertDialog
+                            AlertDialog alert = AlertDialog(
+                              title: Text("Link Sent"),
+                              content: Text("A Password reset link has been sent to your email."),
+                              actions: [
+                                okButton,
+                              ],
+                            );
+                            // show the dialog
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alert;
+                              },
+                            );
 
                           }
                         },

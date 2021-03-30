@@ -81,6 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             isLoading= false;
           });
           print('Error is: ' + e);
+
         }
       }
       await showDialog(
@@ -90,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               backgroundColor: Colors.white,
               title: Text(
                 'Registered successfully!',
-                style: NormalTextStyle,
+                style: ButtonTextStyle,
               ),
               actions: <Widget>[
                 FlatButton(
@@ -98,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Text(
                     "Continue",
                     style:
-                    NormalTextStyle,
+                    ButtonTextStyle,
                   ),
                   onPressed: () async {
                     try {
