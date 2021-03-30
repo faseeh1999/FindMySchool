@@ -90,8 +90,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             return AlertDialog(
               backgroundColor: Colors.white,
               title: Text(
-                'Registered successfully!',
-                style: ButtonTextStyle,
+                'Registered Successfully!',
+                style: TextStyle(color: Colors.black),
               ),
               actions: <Widget>[
                 FlatButton(

@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // set up the AlertDialog
               AlertDialog alert = AlertDialog(
                 title: Text("Wrong Password"),
-                content: Text("The Passowrd You Entered is Incorrect."),
+                content: Text("The Password You Entered is Incorrect."),
                 actions: [
                   okButton,
                 ],
