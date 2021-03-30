@@ -4,6 +4,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'login.dart';
 
@@ -77,16 +78,70 @@ class _DashboardState extends State<Dashboard> {
               Icons.logout,
               color: Colors.black,
             ),
-            onPressed: () async {
-              try {
-                await FirebaseAuth.instance.signOut();
-              } catch (e) {
-                print(e);
-              }
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                      (route) => false);
+            onPressed: ()  {
+
+
+              Widget LogoutButton = FlatButton(
+                child: Text("Logout"),
+                onPressed: () async{
+
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                  } catch (e) {
+                    print(e);
+                  }
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 500),
+                          child: LoginScreen()),
+                          (route) => false);
+
+
+
+                },
+              );
+
+
+
+
+              Widget CancelButton = FlatButton(
+                child: Text("No"),
+                onPressed: () => Navigator.of(context).pop(),
+              );
+
+
+
+
+
+
+
+              // set up the AlertDialog
+              AlertDialog alert = AlertDialog(
+                title: Text("Confirm Logout"),
+                content: Text("Are you sure you want to Logout?"),
+                actions: [
+                  
+                  CancelButton,
+                  LogoutButton,
+
+
+                ],
+              );
+              // show the dialog
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return alert;
+                },
+              );
+
+
+
+
+
+
             },
           )
         ],
