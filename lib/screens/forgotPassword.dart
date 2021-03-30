@@ -5,6 +5,7 @@ import 'package:FindMySchool/theme/text.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ForgotPassword extends StatefulWidget {
 
@@ -21,11 +22,34 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   }
 
 
+
+
+
+
   final validateEmail = ValidationBuilder()
       .required("This Field is Required")
       .email()
       .maxLength(50)
       .build();
+
+
+
+  // Password Reset Function
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future SendresetPasswordEmail(String email) async{
+
+    return _auth.sendPasswordResetEmail(email: email);
+
+  }
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +127,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       RaisedButton.icon(
                         elevation: 3.0,
                         onPressed: () {
+
                           if (_validate() == true) {
+
+                            SendresetPasswordEmail(_email);
 
                           }
                         },

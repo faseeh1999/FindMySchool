@@ -1,7 +1,4 @@
 
-
-import 'package:FindMySchool/screens/signup.dart';
-import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
