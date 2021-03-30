@@ -14,6 +14,8 @@ import 'package:page_transition/page_transition.dart';
 import 'dashboard.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'forgotPassword.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -353,7 +355,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   PageTransition(
                                       type: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 500),
-                                      child: WelcomeScreen()));
+                                      child: ForgotPassword()));
                             },
                             child: Text(
                               "Forgot Your Password?",

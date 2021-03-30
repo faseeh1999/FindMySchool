@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                   splashColor: Colors.blue[200],
                   hoverElevation: 8.0,
                   hoverColor: Colors.green,
-                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                    padding: EdgeInsets.only(left: 35.0, right: 35.0, top: 10.0, bottom: 10.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),

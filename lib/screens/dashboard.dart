@@ -122,7 +122,7 @@ class _DashboardState extends State<Dashboard> {
                 title: Text("Confirm Logout"),
                 content: Text("Are you sure you want to Logout?"),
                 actions: [
-                  
+
                   CancelButton,
                   LogoutButton,
 
