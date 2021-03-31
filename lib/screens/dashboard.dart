@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 
@@ -84,6 +85,10 @@ class _DashboardState extends State<Dashboard> {
               Widget LogoutButton = FlatButton(
                 child: Text("Logout"),
                 onPressed: () async{
+
+                  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                  sharedPreferences.remove('email');
+                  sharedPreferences.remove('token');
 
                   try {
                     await FirebaseAuth.instance.signOut();
