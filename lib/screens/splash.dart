@@ -1,6 +1,7 @@
 import 'package:FindMySchool/screens/dashboard.dart';
 import 'package:FindMySchool/screens/introduction.dart';
 import 'package:FindMySchool/screens/login.dart';
+import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +42,10 @@ class _SplashState extends State<Splash> {
 
               finalEmail == null && finalToken ==null ? PageTransition(
                   type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 900),
-                  child: LoginScreen()): PageTransition(
+                  duration: Duration(milliseconds: 500),
+                  child: WelcomeScreen()): PageTransition(
                   type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 900),
+                  duration: Duration(milliseconds: 500),
                   child: Dashboard())
               );
         });

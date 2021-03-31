@@ -193,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
     sharedPreferences.setString('token', _googleSignIn.toString());
 
 
-    
+
     setState(() {
       isLoading = true;
 
