@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'dashboard.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -45,6 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
   // Login With Email COde
 
   void logInEmail() async {
+
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('email', _email.text);
     setState(() {
       isLoading = true;
     });
@@ -179,6 +183,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
   void logInGoogle() async {
+
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('token', _googleSignIn.toString());
     setState(() {
       isLoading = true;
 
