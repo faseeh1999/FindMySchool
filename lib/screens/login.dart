@@ -47,8 +47,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void logInEmail() async {
 
+    //Sharing Email State
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('email', _email.text);
+
+
     setState(() {
       isLoading = true;
     });
@@ -184,8 +187,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void logInGoogle() async {
 
+    //Sharing Google Login State
+
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('token', _googleSignIn.toString());
+
+
+    
     setState(() {
       isLoading = true;
 
