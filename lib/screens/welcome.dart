@@ -69,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                         context,
                         PageTransition(
                             type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 500),
+                            duration: Duration(milliseconds: 300),
                             child: SignUpScreen()));
                   },
                   child: Text(
@@ -97,7 +97,7 @@ class WelcomeScreen extends StatelessWidget {
                         context,
                         PageTransition(
                             type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 500),
+                            duration: Duration(milliseconds: 300),
                             child: LoginScreen()));
                   },
                   child: Text(

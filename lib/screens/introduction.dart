@@ -58,7 +58,7 @@ class Introduction extends StatelessWidget {
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 300),
                       child: WelcomeScreen()));
             },
             pages: getPages(),
