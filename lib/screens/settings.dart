@@ -6,18 +6,47 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'forgotPassword.dart';
 
-class SettingsScreen extends StatelessWidget {
+
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
     Key key,
   }) : super(key: key);
+
+
+
+
+
+
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+
+
+
+
+class _SettingsScreenState extends State<SettingsScreen> {
+
+
+  // To get User email & Name from Firebase
+
+
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+
       appBar: AppBar(
         actions: [
           IconButton(
@@ -127,7 +156,7 @@ class SettingsScreen extends StatelessWidget {
                 height: size.height * 0.02,
               ),
               Text(
-                "Email",
+                "email",
                 style: TextStyle(fontFamily: 'ss', fontSize: 14),
               ),
               SizedBox(
@@ -136,51 +165,68 @@ class SettingsScreen extends StatelessWidget {
 
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: size.height*0.05,
+                width: size.width*0.8,
                 child: RaisedButton(
+
                   elevation: 0.5,
-                  padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                   onPressed: (){},
                   textColor: Colors.black,
                   color: Colors.white,
-                  child: Text("Account", style: TextStyle(fontFamily: 'ss'),),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Account", style: TextStyle(fontFamily: 'ss', fontSize: 16) )),
 
                 ),
               ),
 
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: size.height*0.05,
+                width: size.width*0.8,
                 child: RaisedButton(
                   elevation: 0.5,
-                  padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                   onPressed: (){},
                   textColor: Colors.black,
                   color: Colors.white,
-                  child: Text("Change", style: TextStyle(fontFamily: 'ss'),),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Change Account Password", style: TextStyle(fontFamily: 'ss',fontSize: 16),)),
 
                 ),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: size.height*0.05,
+                width: size.width*0.8,
                 child: RaisedButton(
                   elevation: 0.5,
-                  padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                   onPressed: (){},
                   textColor: Colors.black,
                   color: Colors.white,
-                  child: Text("Terms   ", style: TextStyle(fontFamily: 'ss'),),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Terms & Conditions", style: TextStyle(fontFamily: 'ss',fontSize: 16),)),
 
                 ),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                height: size.height*0.05,
+                width: size.width*0.8,
                 child: RaisedButton(
 
                   elevation: 0.5,
-                  padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                   onPressed: (){},
                   textColor: Colors.black,
                   color: Colors.white,
-                  child: Text("Contact", style: TextStyle(fontFamily: 'ss')),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Contact Us", style: TextStyle(fontFamily: 'ss',fontSize: 16))),
 
                 ),
               ),

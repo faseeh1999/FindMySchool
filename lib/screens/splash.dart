@@ -1,6 +1,8 @@
+import 'package:FindMySchool/screens/bottombar.dart';
 import 'package:FindMySchool/screens/dashboard.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,39 +11,45 @@ import 'introduction.dart';
 
 String finalEmail, finalToken;
 
+
+String email;
+
+
+
 class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
 }
 
 class _SplashState extends State<Splash> {
+
+  void getUserEmail(){
+
+    User user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      email = user.email;
+    });
+  }
+
+
+
+
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+    await SharedPreferences.getInstance();
+    var obtainedEmail = sharedPreferences.getString('email');
+    var obtainedToken = sharedPreferences.getString('token');
+    setState(() {
+      finalEmail = obtainedEmail;
+      finalToken = obtainedToken;
+    });
+  }
+
   @override
-  Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
-    Future getValidationData() async {
-      final SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      var obtainedEmail = sharedPreferences.getString('email');
-      var obtainedToken = sharedPreferences.getString('token');
-      setState(() {
-        finalEmail = obtainedEmail;
-        finalToken = obtainedToken;
-      });
-    }
-
-
-    // finalEmail == null && finalToken == null
-    //     ? PageTransition(
-    //         type: PageTransitionType.fade,
-    //         duration: Duration(milliseconds: 500),
-    //         child: WelcomeScreen())
-    //     : PageTransition(
-    //         type: PageTransitionType.fade,
-    //         duration: Duration(milliseconds: 500),
-    //         child: Dashboard()));
-
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserEmail();
     getValidationData().whenComplete(() async {
       Future.delayed(Duration(milliseconds: 2800), () {
         Navigator.pushReplacement(
@@ -54,10 +62,10 @@ class _SplashState extends State<Splash> {
                 child: Introduction())
 
                 :
-        PageTransition(
-        type: PageTransitionType.fade,
-        duration: Duration(milliseconds: 300),
-        child: Dashboard())
+            PageTransition(
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 300),
+                child: BottomNavBar())
 
 
 
@@ -67,6 +75,18 @@ class _SplashState extends State<Splash> {
 
       });
     });
+
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+
+
+
 
     return Scaffold(
       body: Container(

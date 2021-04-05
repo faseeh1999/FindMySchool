@@ -181,6 +181,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       inAsyncCall: isLoading,
       child: Scaffold(
         appBar: AppBar(
+          title: Text("Sign Up", style: TextStyle(color: Colors.black, fontFamily: 'ss'),),
+          centerTitle: true,
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0.0,
           backgroundColor: Colors.transparent,
@@ -191,10 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Sign Up",
-                  style: TextStyle(fontFamily: 'ss', fontSize: 20),
-                ),
+
                 SizedBox(
                   height: size.height*0.04,
                 ),

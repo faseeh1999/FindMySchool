@@ -24,9 +24,7 @@ class _DashboardState extends State<Dashboard> {
 
   List listOfColors = [
 
-    Container(
-      color: Colors.blueAccent,
-    ),
+    SettingsScreen(),
     Container(
       color: Colors.amber,
     ),
@@ -128,7 +126,7 @@ class _DashboardState extends State<Dashboard> {
         ),
         bottomNavigationBar: buildBottomNavyBar(),
         body: listOfColors[_currentIndex]);
-  }
+}
 
   BottomNavyBar buildBottomNavyBar() {
     return BottomNavyBar(
