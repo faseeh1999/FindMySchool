@@ -1,3 +1,4 @@
+import 'package:FindMySchool/screens/changePassword.dart';
 import 'package:FindMySchool/screens/login.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
@@ -188,7 +189,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: RaisedButton(
                   elevation: 0.5,
                   //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
-                  onPressed: (){},
+                  onPressed: (){
+
+                    Navigator.push(
+                        context, PageTransition(
+                        child: ChangePassword(),
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 300)
+                    )
+                    );
+
+                  },
                   textColor: Colors.black,
                   color: Colors.white,
                   child: Align(

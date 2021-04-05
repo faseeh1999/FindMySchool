@@ -23,13 +23,13 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
 
-  void getUserEmail(){
-
-    User user = FirebaseAuth.instance.currentUser;
-    setState(() {
-      email = user.email;
-    });
-  }
+  // void getUserEmail(){
+  //
+  //   User user = FirebaseAuth.instance.currentUser;
+  //   setState(() {
+  //     email = user.email;
+  //   });
+  // }
 
 
 
@@ -49,7 +49,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUserEmail();
+    //getUserEmail();
     getValidationData().whenComplete(() async {
       Future.delayed(Duration(milliseconds: 2800), () {
         Navigator.pushReplacement(

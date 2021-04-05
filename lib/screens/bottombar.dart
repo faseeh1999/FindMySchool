@@ -1,3 +1,5 @@
+import 'package:FindMySchool/screens/forgotPassword.dart';
+import 'package:FindMySchool/screens/login.dart';
 import 'package:FindMySchool/screens/settings.dart';
 import 'package:FindMySchool/screens/signup.dart';
 import 'package:FindMySchool/screens/welcome.dart';
@@ -12,6 +14,9 @@ class BottomNavBar extends StatelessWidget {
     return [
 
       WelcomeScreen(),
+      SignUpScreen(),
+      LoginScreen(),
+      ForgotPassword(),
       SettingsScreen(),
     ];
   }
@@ -21,8 +26,26 @@ class BottomNavBar extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.search),
+        title: ("Search"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.star),
+        title: ("Bookmarks"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.bell),
+        title: ("Notifications"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
