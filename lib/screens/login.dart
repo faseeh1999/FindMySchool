@@ -43,6 +43,15 @@ class _LoginScreenState extends State<LoginScreen> {
       .maxLength(50)
       .build();
 
+
+  bool _obscureText = true;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   // Login With Email COde
 
   void logInEmail() async {
@@ -74,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 PageTransition(
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 500),
-                    child: Dashboard()),
+                    child: BottomNavigationBar()),
                 (route) => false);
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
@@ -211,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
             PageTransition(
                 type: PageTransitionType.fade,
                 duration: Duration(milliseconds: 500),
-                child: Dashboard()),
+                child: BottomNavigationBar()),
                 (route) => false);
 
       });
@@ -299,12 +308,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: size.height * 0.04),
                         TextFormField(
+
+
                           controller: _pass,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: validatePassword,
-                          obscureText: true,
+                          obscureText: _obscureText,
                           decoration: InputDecoration(
                               labelText: "Password",
+                              suffixIcon: IconButton(
+                                icon: Icon(Icons.remove_red_eye),
+                                onPressed: _toggle,
+
+                              ),
                               border: OutlineInputBorder()),
                         ),
                         SizedBox(height: size.height * 0.04),

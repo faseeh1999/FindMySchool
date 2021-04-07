@@ -39,6 +39,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return _form.currentState.validate();
   }
 
+  bool _obscurePass = true;
+
+  void _togglePass() {
+    setState(() {
+      _obscurePass = !_obscurePass;
+    });
+  }
+
+
+
+  bool _obscureConfirmPass = true;
+
+  void _toggleConfirmPass() {
+    setState(() {
+      _obscureConfirmPass = !_obscureConfirmPass;
+    });
+  }
+
+
 
 
 
@@ -46,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final validatePhone = ValidationBuilder().required().phone().maxLength(11).minLength(11).build();
   final validateEmail = ValidationBuilder().required().email().maxLength(50).build();
   final validatePassword = ValidationBuilder().required().minLength(6).maxLength(20).build();
-  final validateConfirmPassword = ValidationBuilder().required("hello").build();
+
 
 
 
@@ -261,8 +280,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                             return null;
                           },
-                          obscureText: true,
-                          decoration: InputDecoration(labelText: "Password", border: OutlineInputBorder()),
+                          obscureText: _obscurePass,
+                          decoration: InputDecoration(labelText: "Password",
+
+                              suffixIcon: IconButton(icon: Icon(Icons.remove_red_eye),
+
+                                onPressed: _togglePass,
+
+                              ),
+
+                              border: OutlineInputBorder()),
                         ),
 
                         SizedBox(height: size.height * 0.04),
@@ -278,8 +305,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                             return null;
                           },
-                          obscureText: true,
-                          decoration: InputDecoration(labelText: "Confirm Password", border: OutlineInputBorder()),
+                          obscureText: _obscureConfirmPass,
+                          decoration: InputDecoration(labelText: "Confirm Password",
+
+                              suffixIcon: IconButton(icon: Icon(Icons.remove_red_eye),
+
+                                onPressed: _toggleConfirmPass,
+
+                              ),
+
+
+                              border: OutlineInputBorder()),
                         ),
 
                         SizedBox(height: size.height * 0.04),

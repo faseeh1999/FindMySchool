@@ -1,7 +1,6 @@
 import 'package:FindMySchool/screens/changePassword.dart';
-import 'package:FindMySchool/screens/login.dart';
+import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
-import 'package:FindMySchool/theme/text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -33,13 +32,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // To get User email & Name from Firebase
 
 
-
+String finalEmail,finalToken;
 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    Future getUserData() async {
+      final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+      var obtainedEmail = sharedPreferences.getString('email');
+      var obtainedToken = sharedPreferences.getString('token');
+      setState(() {
+        finalEmail = obtainedEmail.toString();
+        finalToken = obtainedToken.toString();
+      });
+    }
 
   }
 
@@ -56,7 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               color: Colors.black,
             ),
             onPressed: () {
-              Widget LogoutButton = FlatButton(
+              Widget logoutButton = FlatButton(
                 child: Text("Logout"),
                 onPressed: () async {
                   final SharedPreferences sharedPreferences =
@@ -74,12 +84,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       PageTransition(
                           type: PageTransitionType.fade,
                           duration: Duration(milliseconds: 300),
-                          child: LoginScreen()),
+                          child: WelcomeScreen()),
                           (route) => false);
                 },
               );
 
-              Widget CancelButton = FlatButton(
+              Widget cancelButton = FlatButton(
                 child: Text("No"),
                 onPressed: () => Navigator.of(context).pop(),
               );
@@ -89,8 +99,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: Text("Confirm Logout"),
                 content: Text("Are you sure you want to Logout?"),
                 actions: [
-                  CancelButton,
-                  LogoutButton,
+                  cancelButton,
+                  logoutButton,
                 ],
               );
               // show the dialog
@@ -157,7 +167,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: size.height * 0.02,
               ),
               Text(
-                "email",
+                "Email",
                 style: TextStyle(fontFamily: 'ss', fontSize: 14),
               ),
               SizedBox(

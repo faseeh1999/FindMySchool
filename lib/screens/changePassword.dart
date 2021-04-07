@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -16,9 +17,42 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   GlobalKey<FormState> _form = GlobalKey<FormState>();
 
-  final TextEditingController _email = TextEditingController();
+  final TextEditingController _oldPassword = TextEditingController();
+  final TextEditingController _newPassword = TextEditingController();
+  final TextEditingController _confirmNewPassword = TextEditingController();
+
+
+
+
+
   bool _validate() {
     return _form.currentState.validate();
+  }
+
+  bool _obscureOldPass = true;
+
+  void _toggleOldPass() {
+    setState(() {
+      _obscureOldPass = !_obscureOldPass;
+    });
+  }
+
+
+
+  bool _obscureNewPass = true;
+
+  void _toggleNewPass() {
+    setState(() {
+      _obscureNewPass = !_obscureNewPass;
+    });
+  }
+
+  bool _obscureConfirmPass = true;
+
+  void _toggleConfirmPass() {
+    setState(() {
+      _obscureConfirmPass = !_obscureConfirmPass;
+    });
   }
 
 
@@ -26,12 +60,12 @@ class _ChangePasswordState extends State<ChangePassword> {
 
 
 
-  final validateEmail = ValidationBuilder()
-      .required("This Field is Required")
-      .email()
-      .maxLength(50)
-      .build();
+  final validateOldPass = ValidationBuilder().required().minLength(6).maxLength(20).build();
 
+  final validateNewPass = ValidationBuilder().required().minLength(6).maxLength(20).build();
+
+
+  //= ValidationBuilder().test(_newPassword.text);
 
 
   // Password Reset Function
@@ -63,60 +97,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.logout,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Widget LogoutButton = FlatButton(
-                child: Text("Logout"),
-                onPressed: () async {
-                  final SharedPreferences sharedPreferences =
-                  await SharedPreferences.getInstance();
-                  sharedPreferences.remove('email');
-                  sharedPreferences.remove('token');
 
-                  try {
-                    await FirebaseAuth.instance.signOut();
-                  } catch (e) {
-                    print(e);
-                  }
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 300),
-                          child: LoginScreen()),
-                          (route) => false);
-                },
-              );
-
-              Widget CancelButton = FlatButton(
-                child: Text("No"),
-                onPressed: () => Navigator.of(context).pop(),
-              );
-
-              // set up the AlertDialog
-              AlertDialog alert = AlertDialog(
-                title: Text("Confirm Logout"),
-                content: Text("Are you sure you want to Logout?"),
-                actions: [
-                  CancelButton,
-                  LogoutButton,
-                ],
-              );
-              // show the dialog
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return alert;
-                },
-              );
-            },
-          )
-        ],
         leading: Icon(
           Icons.menu_sharp,
           color: Colors.black,
@@ -154,7 +135,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  Icons.lock,
+                  Icons.vpn_key_outlined,
                   color: iconColor,
                   size: 50.0,
                 ),
@@ -163,19 +144,19 @@ class _ChangePasswordState extends State<ChangePassword> {
                 height: size.height * 0.04,
               ),
               Text(
-                "Forgot Your Password?",
+                "Change Your Password?",
                 style: TextStyle(fontFamily: 'ss', fontSize: 20,color: Colors.black),
               ),
               SizedBox(
                 height: size.height * 0.02,
               ),
               Text(
-                "Enter your email address below.",
+                "Enter your old password below.",
                 style: TextStyle(fontFamily: 'ss', fontSize: 15,color: Colors.black),
               ),
               //We'll send you a link to reset your Password.
               Text(
-                "We'll send you a link to reset your Password.",
+                "Enter new password and confirm Password.",
                 style: TextStyle(fontFamily: 'ss', fontSize: 15,color: Colors.black),
               ),
 
@@ -187,13 +168,46 @@ class _ChangePasswordState extends State<ChangePassword> {
                   child: Column(
                     children: [
                       TextFormField(
-                        controller: _email,
+
+                        controller: _oldPassword,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: validateEmail,
+                        validator: validateOldPass,
+                        obscureText: _obscureOldPass,
                         decoration: InputDecoration(
-                            labelText: "Email", border: OutlineInputBorder()),
+                            labelText: "Old Password",
+                            suffixIcon: IconButton(icon: Icon(Icons.remove_red_eye),onPressed: _toggleOldPass,),
+                            border: OutlineInputBorder()),
                       ),
-                      SizedBox(height: size.height * 0.04),
+                      SizedBox(height: size.height * 0.02),
+                      TextFormField(
+                        controller: _newPassword,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: validateNewPass,
+                        obscureText: _obscureNewPass,
+                        decoration: InputDecoration(
+                            labelText: "New Password",
+                            suffixIcon: IconButton(icon: Icon(Icons.remove_red_eye),onPressed: _toggleNewPass,),
+                            border: OutlineInputBorder()),
+                      ),
+                      SizedBox(height: size.height * 0.02),
+                      TextFormField(
+                        controller: _confirmNewPassword,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (String val){
+                          if (val.isEmpty){
+                            return "This field is required.";
+                          }else if( val !=_newPassword.text){
+                            return "Password doesn't match";
+                          }
+                          return null;
+                        },
+                        obscureText: _obscureConfirmPass,
+                        decoration: InputDecoration(
+                            labelText: "Confirm New Password",
+                            suffixIcon: IconButton(icon: Icon(Icons.remove_red_eye),onPressed: _toggleConfirmPass,),
+
+                            border: OutlineInputBorder()),
+                      ),
 
                       SizedBox(height: size.height * 0.04),
                       RaisedButton.icon(
@@ -202,27 +216,27 @@ class _ChangePasswordState extends State<ChangePassword> {
 
                           if (_validate() == true) {
 
-                            SendresetPasswordEmail(_email.text);
+                            SendresetPasswordEmail(_oldPassword.text);
 
                             Widget okButton = FlatButton(
                               child: Text("OK"),
                               onPressed: () {
-                                Navigator.pushAndRemoveUntil(context,
-
-                                    PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 500),
-                                        child: LoginScreen())
-
-
-                                    , (route) => false);
+                                // Navigator.pushAndRemoveUntil(context,
+                                //
+                                //     PageTransition(
+                                //         type: PageTransitionType.fade,
+                                //         duration: Duration(milliseconds: 500),
+                                //         child: LoginScreen())
+                                //
+                                //
+                                //     , (route) => false);
                               },
                             );
 
                             // set up the AlertDialog
                             AlertDialog alert = AlertDialog(
-                              title: Text("Link Sent"),
-                              content: Text("A Password reset link has been sent to your email."),
+                              title: Text("Confirm"),
+                              content: Text("Are you sure you want to change password?"),
                               actions: [
                                 okButton,
                               ],
@@ -241,7 +255,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             borderRadius:
                             BorderRadius.all(Radius.circular(18.0))),
                         label: Text(
-                          'Reset Password',
+                          'Change Password',
                           style: ButtonTextStyle,
                         ),
                         icon: Icon(
@@ -255,29 +269,6 @@ class _ChangePasswordState extends State<ChangePassword> {
                       ),
                       SizedBox(height: size.height * 0.01),
 
-                      SizedBox(height: size.height * 0.01),
-
-                      SizedBox(height: size.height * 0.03),
-                      Divider(
-                        color: Colors.grey[800],
-                      ),
-                      SizedBox(height: size.height * 0.05),
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 500),
-                                    child: LoginScreen()),(route) => false);
-                          },
-                          child: Text(
-                            "Go to Login Page",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'ss',
-                            ),
-                          )),
                     ],
                   ),
                 ),
