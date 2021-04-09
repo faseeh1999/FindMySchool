@@ -1,7 +1,8 @@
-import 'package:FindMySchool/screens/bottombar.dart';
 import 'package:FindMySchool/screens/dashboard.dart';
+import 'package:FindMySchool/screens/settings.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -11,10 +12,7 @@ import 'introduction.dart';
 
 String finalEmail, finalToken;
 
-
 String email;
-
-
 
 class Splash extends StatefulWidget {
   @override
@@ -22,7 +20,6 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-
   // void getUserEmail(){
   //
   //   User user = FirebaseAuth.instance.currentUser;
@@ -31,12 +28,9 @@ class _SplashState extends State<Splash> {
   //   });
   // }
 
-
-
-
   Future getValidationData() async {
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
+        await SharedPreferences.getInstance();
     var obtainedEmail = sharedPreferences.getString('email');
     var obtainedToken = sharedPreferences.getString('token');
     setState(() {
@@ -54,39 +48,23 @@ class _SplashState extends State<Splash> {
       Future.delayed(Duration(milliseconds: 2800), () {
         Navigator.pushReplacement(
             context,
-
-            finalEmail == null && finalToken ==null ?
-            PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 300),
-                child: Introduction())
-
-                :
-            PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 300),
-                child: BottomNavBar())
-
-
-
-        );
-
-
-
+            finalEmail == null && finalToken == null
+                ? PageTransition(
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 300),
+                    child: Introduction())
+                : PageTransition(
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 300),
+                    child: SettingsScreen()));
       });
     });
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-
-
-
 
     return Scaffold(
       body: Container(

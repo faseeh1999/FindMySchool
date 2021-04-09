@@ -1,5 +1,5 @@
-import 'package:FindMySchool/screens/changePassword.dart';
-import 'package:FindMySchool/screens/contact.dart';
+import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/changePassword.dart';
+import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/contact.dart';
 import 'package:FindMySchool/screens/login.dart';
 import 'package:FindMySchool/screens/settings.dart';
 import 'package:FindMySchool/screens/signup.dart';
@@ -19,13 +19,10 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Firebase.initializeApp().then((value){
-
-    });
+    Firebase.initializeApp().then((value) {});
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TermsScreen(),
-
+      home: Splash(),
     );
   }
 }

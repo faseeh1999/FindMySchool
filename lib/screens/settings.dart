@@ -1,5 +1,8 @@
-import 'package:FindMySchool/screens/changePassword.dart';
-import 'package:FindMySchool/screens/contact.dart';
+import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/changePassword.dart';
+import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/contact.dart';
+import 'package:FindMySchool/screens/settings/about.dart';
+import 'package:FindMySchool/screens/settings/privacy.dart';
+import 'package:FindMySchool/screens/settings/terms.dart';
 import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,34 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
     Key key,
   }) : super(key: key);
 
-
-
-
-
-
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
-
-
-
-
 class _SettingsScreenState extends State<SettingsScreen> {
-
-
   // To get User email & Name from Firebase
 
-
-String finalEmail,finalToken;
-
+  String finalEmail, finalToken;
 
   @override
   void initState() {
@@ -43,7 +31,7 @@ String finalEmail,finalToken;
 
     Future getUserData() async {
       final SharedPreferences sharedPreferences =
-      await SharedPreferences.getInstance();
+          await SharedPreferences.getInstance();
       var obtainedEmail = sharedPreferences.getString('email');
       var obtainedToken = sharedPreferences.getString('token');
       setState(() {
@@ -51,70 +39,66 @@ String finalEmail,finalToken;
         finalToken = obtainedToken.toString();
       });
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-
       appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.logout,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Widget logoutButton = FlatButton(
-                child: Text("Logout"),
-                onPressed: () async {
-                  final SharedPreferences sharedPreferences =
-                  await SharedPreferences.getInstance();
-                  sharedPreferences.remove('email');
-                  sharedPreferences.remove('token');
-
-                  try {
-                    await FirebaseAuth.instance.signOut();
-                  } catch (e) {
-                    print(e);
-                  }
-                  Navigator.of(context,rootNavigator: true).pushAndRemoveUntil(
-
-
-                      PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 300),
-                          child: WelcomeScreen()),
-                          (route) => false);
-                },
-              );
-
-              Widget cancelButton = FlatButton(
-                child: Text("No"),
-                onPressed: () => Navigator.of(context).pop(),
-              );
-
-              // set up the AlertDialog
-              AlertDialog alert = AlertDialog(
-                title: Text("Confirm Logout"),
-                content: Text("Are you sure you want to Logout?"),
-                actions: [
-                  cancelButton,
-                  logoutButton,
-                ],
-              );
-              // show the dialog
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return alert;
-                },
-              );
-            },
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(
+        //       Icons.logout,
+        //       color: Colors.black,
+        //     ),
+        //     onPressed: () {
+        //       Widget logoutButton = FlatButton(
+        //         child: Text("Logout"),
+        //         onPressed: () async {
+        //           final SharedPreferences sharedPreferences =
+        //               await SharedPreferences.getInstance();
+        //           sharedPreferences.remove('email');
+        //           sharedPreferences.remove('token');
+        //
+        //           try {
+        //             await FirebaseAuth.instance.signOut();
+        //           } catch (e) {
+        //             print(e);
+        //           }
+        //           Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+        //               PageTransition(
+        //                   type: PageTransitionType.fade,
+        //                   duration: Duration(milliseconds: 300),
+        //                   child: WelcomeScreen()),
+        //               (route) => false);
+        //         },
+        //       );
+        //
+        //       Widget cancelButton = FlatButton(
+        //         child: Text("No"),
+        //         onPressed: () => Navigator.pop(context),
+        //       );
+        //
+        //       // set up the AlertDialog
+        //       AlertDialog alert = AlertDialog(
+        //         title: Text("Confirm Logout"),
+        //         content: Text("Are you sure you want to Logout?"),
+        //         actions: [
+        //           cancelButton,
+        //           logoutButton,
+        //         ],
+        //       );
+        //       // show the dialog
+        //       showDialog(
+        //         context: context,
+        //         builder: (BuildContext context) {
+        //           return alert;
+        //         },
+        //       );
+        //     },
+        //   )
+        // ],
         leading: Icon(
           Icons.menu_sharp,
           color: Colors.black,
@@ -123,12 +107,9 @@ String finalEmail,finalToken;
         backgroundColor: Colors.white,
         title: Text(
           "Settings",
-          style: TextStyle(
-              color: Colors.black,
-            fontFamily: "ss"
-          ),
+          style: TextStyle(color: Colors.black, fontFamily: "ss"),
         ),
-          centerTitle: true,
+        centerTitle: true,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -136,8 +117,6 @@ String finalEmail,finalToken;
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-
               Container(
                 padding: EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
@@ -178,88 +157,206 @@ String finalEmail,finalToken;
 
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                height: size.height*0.05,
-                width: size.width*0.8,
+                height: size.height * 0.05,
+                width: size.width * 0.8,
                 child: RaisedButton(
-
                   elevation: 0.5,
                   //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
-                  onPressed: (){},
+                  onPressed: () {},
                   textColor: Colors.black,
                   color: Colors.white,
                   child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Account", style: TextStyle(fontFamily: 'ss', fontSize: 16) )),
-
+                      child: Text("Account",
+                          style: TextStyle(fontFamily: 'ss', fontSize: 16))),
                 ),
               ),
 
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                height: size.height*0.05,
-                width: size.width*0.8,
+                height: size.height * 0.05,
+                width: size.width * 0.8,
                 child: RaisedButton(
                   elevation: 0.5,
                   //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
-                  onPressed: (){
-
+                  onPressed: () {
                     Navigator.push(
-                        context, PageTransition(
-                        child: ChangePassword(),
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 300)
-                    )
-                    );
+                        context,
+                        PageTransition(
+                            child: ChangePassword(),
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 300)));
+                  },
+                  textColor: Colors.black,
+                  color: Colors.white,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Change Password",
+                        style: TextStyle(fontFamily: 'ss', fontSize: 16),
+                      )),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: size.height * 0.05,
+                width: size.width * 0.8,
+                child: RaisedButton(
+                  elevation: 0.5,
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: TermsScreen(),
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 300)));
 
                   },
                   textColor: Colors.black,
                   color: Colors.white,
                   child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Change Password", style: TextStyle(fontFamily: 'ss',fontSize: 16),)),
-
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                height: size.height*0.05,
-                width: size.width*0.8,
-                child: RaisedButton(
-                  elevation: 0.5,
-                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
-                  onPressed: (){},
-                  textColor: Colors.black,
-                  color: Colors.white,
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Terms & Conditions", style: TextStyle(fontFamily: 'ss',fontSize: 16),)),
-
+                      child: Text(
+                        "Terms & Conditions",
+                        style: TextStyle(fontFamily: 'ss', fontSize: 16),
+                      )),
                 ),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                height: size.height*0.05,
-                width: size.width*0.8,
+                height: size.height * 0.05,
+                width: size.width * 0.8,
                 child: RaisedButton(
-
                   elevation: 0.5,
                   //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
-                  onPressed: (){
-
-                    Navigator.push(context, PageTransition(child: ContactUs(), type: PageTransitionType.fade, duration: Duration(milliseconds: 300)));
-
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: ContactUs(),
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 300)));
                   },
                   textColor: Colors.black,
                   color: Colors.white,
                   child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Contact Us", style: TextStyle(fontFamily: 'ss',fontSize: 16))),
+                      child: Text("Contact Us",
+                          style: TextStyle(fontFamily: 'ss', fontSize: 16))),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                height: size.height * 0.05,
+                width: size.width * 0.8,
+                child: RaisedButton(
+                  elevation: 0.5,
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: AboutScreen(),
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 300)));
+                  },
+                  textColor: Colors.black,
+                  color: Colors.white,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("About Us",
+                          style: TextStyle(fontFamily: 'ss', fontSize: 16))),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                height: size.height * 0.05,
+                width: size.width * 0.8,
+                child: RaisedButton(
+                  elevation: 0.5,
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: PrivacyScreen(),
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 300)));
+                  },
+                  textColor: Colors.black,
+                  color: Colors.white,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Privacy Policy",
+                          style: TextStyle(fontFamily: 'ss', fontSize: 16))),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                height: size.height * 0.05,
+                width: size.width * 0.8,
+                child: RaisedButton(
+                  elevation: 0.5,
+                  //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
+                  onPressed: () {
 
+                    Widget logoutButton = FlatButton(
+                          child: Text("Logout"),
+                          onPressed: () async {
+                          final SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+                          sharedPreferences.remove('email');
+                          sharedPreferences.remove('token');
+
+                          try {
+                          await FirebaseAuth.instance.signOut();
+                          } catch (e) {
+                          print(e);
+                          }
+                          Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                          PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 300),
+                          child: WelcomeScreen()),
+                          (route) => false);
+                          },
+                          );
+
+                          Widget cancelButton = FlatButton(
+                          child: Text("No"),
+                          onPressed: () => Navigator.pop(context),
+                          );
+
+                          // set up the AlertDialog
+                          AlertDialog alert = AlertDialog(
+                          title: Text("Confirm Logout"),
+                          content: Text("Are you sure you want to Logout?"),
+                          actions: [
+                          cancelButton,
+                          logoutButton,
+                          ],
+                          );
+                          // show the dialog
+                          showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                          return alert;
+                          },
+                          );
+                          },
+
+
+                  textColor: Colors.black,
+                  color: Colors.white,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Logout",
+                          style: TextStyle(fontFamily: 'ss', fontSize: 16))),
                 ),
               ),
 
               // Login Form Starts from here.
-
             ],
           ),
         ),

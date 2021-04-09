@@ -12,7 +12,7 @@ class ContactUs extends StatelessWidget {
   final TextEditingController _message = TextEditingController();
 
 
-  final validateName = ValidationBuilder().required("This field is Required").maxLength(30).build();
+  final validateName = ValidationBuilder().required().build();
   final validateEmail = ValidationBuilder().required().email().maxLength(50).build();
   final validateMessage = ValidationBuilder().required("This field is Required").maxLength(100).build();
 
@@ -60,13 +60,13 @@ class ContactUs extends StatelessWidget {
                   color: primaryColor,
                   child: Padding(
                     padding: const EdgeInsets.all(60.0),
-                    child: Text("Find My School",
+                    child: Text("Send us a Message",
 
 
                       style: TextStyle(
                           fontFamily: 'ss',
                           color: Colors.white,
-                          fontSize: 40,
+                          fontSize: 25,
                         fontWeight: FontWeight.bold,
 
 
@@ -101,7 +101,14 @@ class ContactUs extends StatelessWidget {
                                 keyboardType: TextInputType.name,
 
                                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                                validator: validateName,
+                                validator: (String val){
+                                                          if (val.isEmpty){
+                                                          return "This field is required.";
+                                                          }
+                                                          return null;
+                                                          },
+
+
                                 decoration: InputDecoration(labelText: "Your Name", border: OutlineInputBorder()),
                               ),
                               SizedBox(height: size.height * 0.04),
@@ -121,10 +128,15 @@ class ContactUs extends StatelessWidget {
                                 maxLines: 7,
 
                                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                                validator: validateMessage,
+                                validator: (String val){
+                                  if (val.isEmpty){
+                                    return "This field is required.";
+                                  }
+                                  return null;
+                                },
                                 decoration: InputDecoration(alignLabelWithHint: true,labelText: "Your Message", border: OutlineInputBorder()),
                               ),
-                              SizedBox(height: size.height*0.019,),
+                              SizedBox(height: size.height*0.05,),
                               RaisedButton(
 
                                 onPressed: () {

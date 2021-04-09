@@ -206,7 +206,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             border: OutlineInputBorder()),
                       ),
 
-                      SizedBox(height: size.height * 0.04),
+                      SizedBox(height: size.height * 0.06),
                       RaisedButton.icon(
                         elevation: 3.0,
                         onPressed: () {

@@ -1,4 +1,4 @@
-
+import 'package:FindMySchool/screens/settings.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,7 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
       .maxLength(50)
       .build();
 
-
   bool _obscureText = true;
 
   void _toggle() {
@@ -55,11 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
   // Login With Email COde
 
   void logInEmail() async {
-
     //Sharing Email State
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     sharedPreferences.setString('email', _email.text);
-
 
     setState(() {
       isLoading = true;
@@ -83,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 PageTransition(
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 500),
-                    child: BottomNavigationBar()),
+                    child: SettingsScreen()),
                 (route) => false);
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
@@ -190,63 +188,31 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
 
-
-
-
-
   void logInGoogle() async {
-
-    //Sharing Google Login State
-
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString('token', _googleSignIn.toString());
-
-
-
     setState(() {
       isLoading = true;
-
-
-
     });
 
+    try {
 
-    try{
       await _googleSignIn.signIn();
+      print("Aaalu");
       setState(() {
         isLoading = false;
-        Navigator.pushAndRemoveUntil(
-            context,
+        Navigator.of(context, rootNavigator: false).pushAndRemoveUntil(
             PageTransition(
                 type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 500),
-                child: BottomNavigationBar()),
-                (route) => false);
-
+                duration: Duration(milliseconds: 300),
+                child: SettingsScreen()),
+            (route) => false);
       });
-    }
-    catch (err){
+    } catch (err) {
       setState(() {
         isLoading = true;
       });
       print(err);
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -308,8 +274,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: size.height * 0.04),
                         TextFormField(
-
-
                           controller: _pass,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: validatePassword,
@@ -319,7 +283,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.remove_red_eye),
                                 onPressed: _toggle,
-
                               ),
                               border: OutlineInputBorder()),
                         ),
@@ -388,10 +351,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               "Forgot Your Password?",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  fontFamily: 'ss',
-                                  ),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                fontFamily: 'ss',
+                              ),
                             )),
                       ],
                     ),
