@@ -1,4 +1,5 @@
 import 'package:FindMySchool/screens/changePassword.dart';
+import 'package:FindMySchool/screens/contact.dart';
 import 'package:FindMySchool/screens/welcome.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -79,8 +80,9 @@ String finalEmail,finalToken;
                   } catch (e) {
                     print(e);
                   }
-                  Navigator.pushAndRemoveUntil(
-                      context,
+                  Navigator.of(context,rootNavigator: true).pushAndRemoveUntil(
+
+
                       PageTransition(
                           type: PageTransitionType.fade,
                           duration: Duration(milliseconds: 300),
@@ -214,7 +216,7 @@ String finalEmail,finalToken;
                   color: Colors.white,
                   child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Change Account Password", style: TextStyle(fontFamily: 'ss',fontSize: 16),)),
+                      child: Text("Change Password", style: TextStyle(fontFamily: 'ss',fontSize: 16),)),
 
                 ),
               ),
@@ -242,7 +244,11 @@ String finalEmail,finalToken;
 
                   elevation: 0.5,
                   //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
-                  onPressed: (){},
+                  onPressed: (){
+
+                    Navigator.push(context, PageTransition(child: ContactUs(), type: PageTransitionType.fade, duration: Duration(milliseconds: 300)));
+
+                  },
                   textColor: Colors.black,
                   color: Colors.white,
                   child: Align(

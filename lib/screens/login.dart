@@ -388,9 +388,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               "Forgot Your Password?",
                               style: TextStyle(
+                                  fontWeight: FontWeight.w400,
                                   fontSize: 18,
                                   fontFamily: 'ss',
-                                  decoration: TextDecoration.underline),
+                                  ),
                             )),
                       ],
                     ),
