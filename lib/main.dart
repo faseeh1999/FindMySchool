@@ -1,5 +1,4 @@
-import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/changePassword.dart';
-import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/contact.dart';
+
 import 'package:FindMySchool/screens/login.dart';
 import 'package:FindMySchool/screens/settings.dart';
 import 'package:FindMySchool/screens/signup.dart';
