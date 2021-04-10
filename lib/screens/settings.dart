@@ -1,6 +1,6 @@
-import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/changePassword.dart';
-import 'file:///D:/Comsats/8th%20Semester/FYP-2/FindMySchool/lib/screens/settings/contact.dart';
 import 'package:FindMySchool/screens/settings/about.dart';
+import 'package:FindMySchool/screens/settings/changePassword.dart';
+import 'package:FindMySchool/screens/settings/contact.dart';
 import 'package:FindMySchool/screens/settings/privacy.dart';
 import 'package:FindMySchool/screens/settings/terms.dart';
 import 'package:FindMySchool/screens/welcome.dart';
@@ -29,76 +29,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // TODO: implement initState
     super.initState();
 
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     Future getUserData() async {
+      print("Aaaaaaalu");
       final SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
+      await SharedPreferences.getInstance();
       var obtainedEmail = sharedPreferences.getString('email');
+      print(obtainedEmail);
       var obtainedToken = sharedPreferences.getString('token');
       setState(() {
         finalEmail = obtainedEmail.toString();
         finalToken = obtainedToken.toString();
       });
     }
-  }
 
-  @override
-  Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(
-        //       Icons.logout,
-        //       color: Colors.black,
-        //     ),
-        //     onPressed: () {
-        //       Widget logoutButton = FlatButton(
-        //         child: Text("Logout"),
-        //         onPressed: () async {
-        //           final SharedPreferences sharedPreferences =
-        //               await SharedPreferences.getInstance();
-        //           sharedPreferences.remove('email');
-        //           sharedPreferences.remove('token');
-        //
-        //           try {
-        //             await FirebaseAuth.instance.signOut();
-        //           } catch (e) {
-        //             print(e);
-        //           }
-        //           Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-        //               PageTransition(
-        //                   type: PageTransitionType.fade,
-        //                   duration: Duration(milliseconds: 300),
-        //                   child: WelcomeScreen()),
-        //               (route) => false);
-        //         },
-        //       );
-        //
-        //       Widget cancelButton = FlatButton(
-        //         child: Text("No"),
-        //         onPressed: () => Navigator.pop(context),
-        //       );
-        //
-        //       // set up the AlertDialog
-        //       AlertDialog alert = AlertDialog(
-        //         title: Text("Confirm Logout"),
-        //         content: Text("Are you sure you want to Logout?"),
-        //         actions: [
-        //           cancelButton,
-        //           logoutButton,
-        //         ],
-        //       );
-        //       // show the dialog
-        //       showDialog(
-        //         context: context,
-        //         builder: (BuildContext context) {
-        //           return alert;
-        //         },
-        //       );
-        //     },
-        //   )
-        // ],
         leading: Icon(
           Icons.menu_sharp,
           color: Colors.black,
@@ -355,8 +308,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           style: TextStyle(fontFamily: 'ss', fontSize: 16))),
                 ),
               ),
-
-              // Login Form Starts from here.
             ],
           ),
         ),
