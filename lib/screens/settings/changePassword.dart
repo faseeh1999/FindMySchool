@@ -1,13 +1,13 @@
-import 'package:FindMySchool/screens/login.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ChangePassword extends StatefulWidget {
 
@@ -21,6 +21,32 @@ class _ChangePasswordState extends State<ChangePassword> {
   final TextEditingController _oldPassword = TextEditingController();
   final TextEditingController _newPassword = TextEditingController();
   final TextEditingController _confirmNewPassword = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  
+
+  // Future<Null> changePassword(String newPassword) async {
+  //   const String API_KEY = 'YOUR_API_KEY';
+  //   final String changePasswordUrl =
+  //       'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo?key=$API_KEY';
+  //
+  //   final String idToken = await _auth. // where user is FirebaseUser user
+  //
+  //   final Map<String, dynamic> payload = {
+  //     'email': idToken,
+  //     'password': newPassword,
+  //     'returnSecureToken': true
+  //   };
+  //
+  //   await http.post(changePasswordUrl,
+  //     body: json.encode(payload),
+  //     headers: {'Content-Type': 'application/json'},
+  //   );
+  // }
+  //
+  //
+
+
+
 
 
 
@@ -71,7 +97,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   // Password Reset Function
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future SendresetPasswordEmail(String email) async{
 

@@ -1,10 +1,10 @@
-import 'package:FindMySchool/screens/login.dart';
-import 'package:FindMySchool/screens/signup.dart';
+import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/authentication/login.dart';
+import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/authentication/signup.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../theme/colors.dart';
+import '../../theme/colors.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override

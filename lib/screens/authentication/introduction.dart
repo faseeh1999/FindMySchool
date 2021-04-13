@@ -1,9 +1,9 @@
-import 'package:FindMySchool/screens/welcome.dart';
+import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/authentication/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../theme/colors.dart';
+import '../../theme/colors.dart';
 
 class Introduction extends StatelessWidget {
   List<PageViewModel> getPages() {

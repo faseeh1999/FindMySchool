@@ -1,5 +1,5 @@
-import 'package:FindMySchool/screens/dashboard.dart';
-import 'package:FindMySchool/screens/settings.dart';
+
+import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/settings/settings.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

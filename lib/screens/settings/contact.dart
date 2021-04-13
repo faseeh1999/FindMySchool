@@ -1,4 +1,4 @@
-import 'package:FindMySchool/screens/signup.dart';
+import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/authentication/signup.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:flutter/material.dart';

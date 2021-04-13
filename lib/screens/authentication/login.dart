@@ -1,4 +1,4 @@
-import 'package:FindMySchool/screens/settings.dart';
+import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/settings/settings.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,10 +9,10 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'dashboard.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'forgotPassword.dart';
+import '../settings/forgotPassword.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
