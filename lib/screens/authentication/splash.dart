@@ -1,6 +1,7 @@
 
 import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/settings/settings.dart';
 
+import 'package:FindMySchool/screens/home/home.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,7 +57,7 @@ class _SplashState extends State<Splash> {
                 : PageTransition(
                     type: PageTransitionType.fade,
                     duration: Duration(milliseconds: 300),
-                    child: SettingsScreen()));
+                    child: HomeScreen()));
       });
     });
   }

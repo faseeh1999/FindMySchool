@@ -22,15 +22,8 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   // To get User email & Name from Firebase
 
-  String finalEmail, finalToken;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
 
 
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(
-          "Settings",
+          "S",
           style: TextStyle(color: Colors.black, fontFamily: "ss"),
         ),
         centerTitle: true,
