@@ -1,6 +1,4 @@
-
-
-
+import 'package:FindMySchool/screens/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/authentication/splash.dart';
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
     Firebase.initializeApp().then((value) {});
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: HomeScreen(),
     );
   }
 }

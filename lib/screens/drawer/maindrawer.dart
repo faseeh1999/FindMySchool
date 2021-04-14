@@ -28,7 +28,7 @@ class MainDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding:  EdgeInsets.only(top: size.height * 0.17),
+                  padding: EdgeInsets.only(top: size.height * 0.17),
                   child: Icon(
                     Icons.person_outline_rounded,
                     color: Colors.white,
@@ -38,24 +38,24 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.08,
                 ),
-                Text("M.Faseeh",
+                Text(
+                  "M.Faseeh",
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'ss',
-                      fontSize: size.width*0.065,
-                      fontWeight: FontWeight.w500
-                  ),
+                      fontSize: size.width * 0.065,
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Text("Email",
+                Text(
+                  "Email",
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'ss',
-                      fontSize: size.width*0.045,
-                      fontWeight: FontWeight.w500
-                  ),
+                      fontSize: size.width * 0.045,
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: size.height * 0.06,
@@ -67,36 +67,30 @@ class MainDrawer extends StatelessWidget {
                       height: size.height * 0.05,
                       width: size.width * 0.8,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: size.width*0.1),
+                        padding: EdgeInsets.only(left: size.width * 0.1),
                         child: Align(
-
                           alignment: Alignment.centerLeft,
                           child: RaisedButton.icon(
                             label: Text("Home",
                                 style: TextStyle(
-                                    fontFamily: 'ss',
-                                    fontSize: size.width*0.045,)
-                            ),
+                                  fontFamily: 'ss',
+                                  fontSize: size.width * 0.045,
+                                )),
                             icon: Icon(Icons.add_location_alt_outlined),
                             elevation: 0.0,
                             //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                             onPressed: () {
-
                               Navigator.of(context).pop();
                               Navigator.pushReplacement(
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 300),
-                                    child: HomeScreen()
-                                ),
-
+                                    child: HomeScreen()),
                               );
-
                             },
                             textColor: Colors.white,
                             color: Colors.transparent,
-
                           ),
                         ),
                       ),
@@ -106,16 +100,15 @@ class MainDrawer extends StatelessWidget {
                       height: size.height * 0.05,
                       width: size.width * 0.8,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: size.width*0.1),
+                        padding: EdgeInsets.only(left: size.width * 0.1),
                         child: Align(
-
                           alignment: Alignment.centerLeft,
                           child: RaisedButton.icon(
                             label: Text("Search",
                                 style: TextStyle(
                                   fontFamily: 'ss',
-                                  fontSize: size.width*0.045,)
-                            ),
+                                  fontSize: size.width * 0.045,
+                                )),
                             icon: Icon(Icons.search),
                             elevation: 0.0,
                             //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
@@ -126,73 +119,62 @@ class MainDrawer extends StatelessWidget {
                                 PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 300),
-                                    child: SearchScreen()
-                                ),
-
+                                    child: SearchScreen()),
                               );
-
                             },
                             textColor: Colors.white,
                             color: Colors.transparent,
-
                           ),
                         ),
                       ),
                     ),
-
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                       height: size.height * 0.05,
                       width: size.width * 0.8,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: size.width*0.1),
+                        padding: EdgeInsets.only(left: size.width * 0.1),
                         child: Align(
-
                           alignment: Alignment.centerLeft,
                           child: RaisedButton.icon(
                             label: Text("Bookmarks",
                                 style: TextStyle(
                                   fontFamily: 'ss',
-                                  fontSize: size.width*0.045,)
-                            ),
+                                  fontSize: size.width * 0.045,
+                                )),
                             icon: Icon(Icons.star_border_outlined),
                             elevation: 0.0,
                             //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                             onPressed: () {
                               Navigator.of(context).pop();
                               Navigator.pushReplacement(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 300),
-                                      child: BookmarkScreen()
-                                  ),
-
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 300),
+                                    child: BookmarkScreen()),
                               );
                             },
                             textColor: Colors.white,
                             color: Colors.transparent,
-
                           ),
                         ),
                       ),
                     ),
-
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                       height: size.height * 0.05,
                       width: size.width * 0.8,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: size.width*0.1),
+                        padding: EdgeInsets.only(left: size.width * 0.1),
                         child: Align(
-
                           alignment: Alignment.centerLeft,
                           child: RaisedButton.icon(
                             label: Text("Notifications",
                                 style: TextStyle(
                                   fontFamily: 'ss',
-                                  fontSize: size.width*0.045,)
-                            ),
+                                  fontSize: size.width * 0.045,
+                                )),
                             icon: Icon(Icons.notifications_none_outlined),
                             elevation: 0.0,
                             //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
@@ -203,15 +185,11 @@ class MainDrawer extends StatelessWidget {
                                 PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 300),
-                                    child: NotificationScreen()
-                                ),
-
+                                    child: NotificationScreen()),
                               );
-
                             },
                             textColor: Colors.white,
                             color: Colors.transparent,
-
                           ),
                         ),
                       ),
@@ -221,16 +199,15 @@ class MainDrawer extends StatelessWidget {
                       height: size.height * 0.05,
                       width: size.width * 0.8,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: size.width*0.1),
+                        padding: EdgeInsets.only(left: size.width * 0.1),
                         child: Align(
-
                           alignment: Alignment.centerLeft,
                           child: RaisedButton.icon(
                             label: Text("Settings",
                                 style: TextStyle(
                                   fontFamily: 'ss',
-                                  fontSize: size.width*0.045,)
-                            ),
+                                  fontSize: size.width * 0.045,
+                                )),
                             icon: Icon(Icons.settings),
                             elevation: 0.0,
                             //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
@@ -241,14 +218,11 @@ class MainDrawer extends StatelessWidget {
                                 PageTransition(
                                     type: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 300),
-                                    child: SettingsScreen()
-                                ),
-
+                                    child: SettingsScreen()),
                               );
                             },
                             textColor: Colors.white,
                             color: Colors.transparent,
-
                           ),
                         ),
                       ),
@@ -258,26 +232,24 @@ class MainDrawer extends StatelessWidget {
                       height: size.height * 0.05,
                       width: size.width * 0.8,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: size.width*0.1),
+                        padding: EdgeInsets.only(left: size.width * 0.1),
                         child: Align(
-
                           alignment: Alignment.centerLeft,
                           child: RaisedButton.icon(
                             label: Text("Logout",
                                 style: TextStyle(
                                   fontFamily: 'ss',
-                                  fontSize: size.width*0.045,)
-                            ),
+                                  fontSize: size.width * 0.045,
+                                )),
                             icon: Icon(Icons.login_outlined),
                             elevation: 0.0,
                             //padding: EdgeInsets.symmetric(horizontal: size.width*0.35,vertical: size.height*0.02),
                             onPressed: () {
-
                               Widget logoutButton = FlatButton(
                                 child: Text("Logout"),
                                 onPressed: () async {
                                   final SharedPreferences sharedPreferences =
-                                  await SharedPreferences.getInstance();
+                                      await SharedPreferences.getInstance();
                                   sharedPreferences.remove('email');
                                   sharedPreferences.remove('token');
 
@@ -304,7 +276,8 @@ class MainDrawer extends StatelessWidget {
                               // set up the AlertDialog
                               AlertDialog alert = AlertDialog(
                                 title: Text("Confirm Logout"),
-                                content: Text("Are you sure you want to Logout?"),
+                                content:
+                                    Text("Are you sure you want to Logout?"),
                                 actions: [
                                   cancelButton,
                                   logoutButton,
@@ -317,23 +290,17 @@ class MainDrawer extends StatelessWidget {
                                   return alert;
                                 },
                               );
-
                             },
                             textColor: Colors.white,
                             color: Colors.transparent,
-
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 )
               ],
             ),
-
-
-
           ],
         ),
       ),

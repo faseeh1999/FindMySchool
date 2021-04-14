@@ -1,5 +1,6 @@
 import 'package:FindMySchool/screens/bookmarks/bookmark.dart';
-import 'package:FindMySchool/screens/home/home.dart';
+//import 'package:FindMySchool/screens/home/home.dart';
+import 'package:FindMySchool/screens/notifications/notifications.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,7 +10,6 @@ import 'package:form_validator/form_validator.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -84,9 +84,6 @@ class _LoginScreenState extends State<LoginScreen> {
             //     duration: Duration(
             //         milliseconds: 300),
             //     child: HomeScreen()));
-
-
-
 
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
@@ -192,11 +189,10 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-
   void logInGoogle() async {
     //Sharing Email State
     final SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
+        await SharedPreferences.getInstance();
     sharedPreferences.setString('token', _googleSignIn.currentUser.email);
 
     setState(() {
@@ -204,18 +200,17 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-
       await _googleSignIn.signIn();
       print("Aaalu");
       setState(() {
         isLoading = false;
         Navigator.pushReplacement(
           context,
-            PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 300),
-                child: BookmarkScreen()),
-           );
+          PageTransition(
+              type: PageTransitionType.fade,
+              duration: Duration(milliseconds: 300),
+              child: BookmarkScreen()),
+        );
       });
     } catch (err) {
       setState(() {
@@ -380,8 +375,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void logInWithEmail() async {
-
-
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     sharedPreferences.setString('email', _email.text);
@@ -406,14 +399,9 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushReplacement(
                 context,
                 PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(
-                    milliseconds: 300),
-                child: HomeScreen()));
-
-
-
-
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 300),
+                    child: NotificationScreen()));
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
               setState(() {

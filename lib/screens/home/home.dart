@@ -7,7 +7,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
-
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(
@@ -18,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       ),
       drawer: MainDrawer(),
       body: Center(
-        child: Text("Center"),
+        child: Text("Test"),
       ),
     );
   }
