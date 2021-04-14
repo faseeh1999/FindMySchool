@@ -1,3 +1,4 @@
+import 'package:FindMySchool/screens/drawer/maindrawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,10 +6,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu_sharp,
-          color: Colors.black,
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
+
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(
@@ -17,7 +16,10 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      
+      drawer: MainDrawer(),
+      body: Center(
+        child: Text("Center"),
+      ),
     );
   }
 }

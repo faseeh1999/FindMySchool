@@ -34,9 +34,13 @@ class _SplashState extends State<Splash> {
         await SharedPreferences.getInstance();
     var obtainedEmail = sharedPreferences.getString('email');
     var obtainedToken = sharedPreferences.getString('token');
+    print(obtainedEmail);
+    print(obtainedToken);
     setState(() {
       finalEmail = obtainedEmail;
       finalToken = obtainedToken;
+      print(finalEmail);
+      print(finalToken);
     });
   }
 

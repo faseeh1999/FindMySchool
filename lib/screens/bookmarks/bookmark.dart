@@ -1,3 +1,4 @@
+import 'package:FindMySchool/screens/drawer/maindrawer.dart';
 import 'package:flutter/material.dart';
 
 class BookmarkScreen extends StatelessWidget {
@@ -5,10 +6,7 @@ class BookmarkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu_sharp,
-          color: Colors.black,
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(
@@ -17,6 +15,7 @@ class BookmarkScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      drawer: MainDrawer(),
     );
   }
 }

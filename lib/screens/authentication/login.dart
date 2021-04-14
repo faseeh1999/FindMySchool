@@ -1,4 +1,5 @@
-import 'file:///C:/Flutter%20Projects/FindMySchool/lib/screens/settings/settings.dart';
+import 'package:FindMySchool/screens/bookmarks/bookmark.dart';
+import 'package:FindMySchool/screens/home/home.dart';
 import 'package:FindMySchool/theme/colors.dart';
 import 'package:FindMySchool/theme/text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -75,14 +76,18 @@ class _LoginScreenState extends State<LoginScreen> {
             setState(() {
               isLoading = false;
             });
+            print("Test2");
+            // Navigator.pushReplacement(
+            //     context,
+            //     PageTransition(
+            //     type: PageTransitionType.fade,
+            //     duration: Duration(
+            //         milliseconds: 300),
+            //     child: HomeScreen()));
 
-            Navigator.pushAndRemoveUntil(
-                context,
-                PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 500),
-                    child: SettingsScreen()),
-                (route) => false);
+
+
+
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
               setState(() {
@@ -189,6 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
   void logInGoogle() async {
+    //Sharing Email State
+    final SharedPreferences sharedPreferences =
+    await SharedPreferences.getInstance();
+    sharedPreferences.setString('token', _googleSignIn.currentUser.email);
+
     setState(() {
       isLoading = true;
     });
@@ -199,12 +209,13 @@ class _LoginScreenState extends State<LoginScreen> {
       print("Aaalu");
       setState(() {
         isLoading = false;
-        Navigator.of(context, rootNavigator: false).pushAndRemoveUntil(
+        Navigator.pushReplacement(
+          context,
             PageTransition(
                 type: PageTransitionType.fade,
                 duration: Duration(milliseconds: 300),
-                child: SettingsScreen()),
-            (route) => false);
+                child: BookmarkScreen()),
+           );
       });
     } catch (err) {
       setState(() {
@@ -291,14 +302,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           elevation: 3.0,
                           onPressed: () {
                             if (_validate() == true) {
-                              logInEmail();
+                              logInWithEmail();
                             }
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(18.0))),
                           label: Text(
-                            'Login Wth Email',
+                            'Login With Email',
                             style: ButtonTextStyle,
                           ),
                           icon: Icon(
@@ -366,5 +377,144 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void logInWithEmail() async {
+
+
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.setString('email', _email.text);
+
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await FirebaseFirestore.instance
+          .doc("user/${_email.text}")
+          .get()
+          .then((doc) async {
+        if (doc.exists) {
+          try {
+            // ignore: unused_local_variable
+            UserCredential user = await _auth.signInWithEmailAndPassword(
+                email: _email.text, password: _pass.text);
+            setState(() {
+              isLoading = false;
+            });
+            print("Test2");
+            Navigator.pushReplacement(
+                context,
+                PageTransition(
+                type: PageTransitionType.fade,
+                duration: Duration(
+                    milliseconds: 300),
+                child: HomeScreen()));
+
+
+
+
+          } on FirebaseAuthException catch (e) {
+            if (e.code == 'user-not-found') {
+              setState(() {
+                isLoading = false;
+              });
+              print("User not found");
+            } else if (e.code == 'wrong-password') {
+              setState(() {
+                isLoading = false;
+              });
+
+              print("Wrong Password");
+
+              Widget okButton = FlatButton(
+                child: Text("Try Again"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              );
+
+              // set up the AlertDialog
+              AlertDialog alert = AlertDialog(
+                title: Text("Wrong Password"),
+                content: Text("The Password You Entered is Incorrect."),
+                actions: [
+                  okButton,
+                ],
+              );
+              // show the dialog
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return alert;
+                },
+              );
+            }
+          } catch (e) {
+            setState(() {
+              isLoading = false;
+            });
+            print("Error: " + e);
+          }
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          print("User Not Found");
+
+          Widget okButton = FlatButton(
+            child: Text("Try Again"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          );
+
+          // set up the AlertDialog
+          AlertDialog alert = AlertDialog(
+            title: Text("Invalid Email"),
+            content: Text("The Email You Entered is Incorrect."),
+            actions: [
+              okButton,
+            ],
+          );
+          // show the dialog
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
+        }
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+
+        Widget okButton = FlatButton(
+          child: Text("Try Again"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        );
+
+        // set up the AlertDialog
+        AlertDialog alert = AlertDialog(
+          title: Text("Connection Error"),
+          content: Text("Kindly Check Your Connection & Try Again"),
+          actions: [
+            okButton,
+          ],
+        );
+        // show the dialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+      });
+
+      print(e);
+    }
   }
 }

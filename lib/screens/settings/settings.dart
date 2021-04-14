@@ -1,3 +1,4 @@
+import 'package:FindMySchool/screens/drawer/maindrawer.dart';
 import 'package:FindMySchool/screens/settings/about.dart';
 import 'package:FindMySchool/screens/settings/changePassword.dart';
 import 'package:FindMySchool/screens/settings/contact.dart';
@@ -46,18 +47,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu_sharp,
-          color: Colors.black,
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(
-          "S",
+          "Settings",
           style: TextStyle(color: Colors.black, fontFamily: "ss"),
         ),
         centerTitle: true,
       ),
+      drawer: MainDrawer(),
       body: Stack(
         children: [
           Image.asset(
@@ -267,12 +266,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               } catch (e) {
                               print(e);
                               }
-                              Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                              Navigator.pushReplacement(
+                                context,
                               PageTransition(
                               type: PageTransitionType.fade,
                               duration: Duration(milliseconds: 300),
                               child: WelcomeScreen()),
-                              (route) => false);
+                              );
                               },
                               );
 
